@@ -24,10 +24,4 @@ app.layout = html.Div([
               figure = fig)
 ])
 
-@app.callback(
-    Output("scatter-plot", "figure"))
-def update_bar_chart(slider_range):
-    
-    return fig
-
 app.run_server(debug=True)
