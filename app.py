@@ -5,7 +5,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 #from dash.dependencies import Input, Output
 import plotly.express as px
+import dash_bootstrap_components as dbc
 import pandas as pd
+
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 
 workbook_url = 'data//5-INTER.xlsx'
@@ -19,10 +23,8 @@ fig = px.scatter(
         df, x="Passes per 90", y="Accurate passes, %", color="Team", size='size', 
         hover_data=['Player'])
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
+
 
 
 app.layout = html.Div([
