@@ -1,7 +1,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+#from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 
@@ -20,8 +20,9 @@ fig = px.scatter(
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
+    html.H1("Análises"),
     dcc.Graph(id="scatter-plot",
               figure = fig)
 ])
 
-app.run_server(debug=True)
+app.run_server(debug=False)
