@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -17,7 +19,11 @@ fig = px.scatter(
         df, x="Passes per 90", y="Accurate passes, %", color="Team", size='size', 
         hover_data=['Player'])
 
-app = dash.Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
+
 
 app.layout = html.Div([
     html.H1("Análises"),
@@ -25,4 +31,5 @@ app.layout = html.Div([
               figure = fig)
 ])
 
-app.run_server(debug=False)
+if __name__ == '__main__':
+    app.run_server(debug=True)
