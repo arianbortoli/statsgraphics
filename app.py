@@ -99,16 +99,17 @@ def update_graph(ranking):
                         'sizeref':2,}))
     """
     # conjunto fora do ranking
-    fig.add_trace(go.Scattergl(
-                x=df_out['Passes per 90'], 
-                y=df_out['Accurate passes, %'], 
+    for index, row in df_out.iterrows():
+        fig.add_trace(go.Scattergl(
+                x=[row['Passes per 90']], 
+                y=[row['Accurate passes, %']], 
                 mode='markers',
-                text=df_out['Player'],
+                text=[row['Player']],
                 hovertemplate=hover,
                 marker_size=10,
                 customdata=[[row['Team']]],
                 opacity=0.3,
-                name='Outros',
+                name=row['Player'],
                 marker={'sizemode':'area',
                         'sizeref':.305,
                         'color': 'gray'}))
