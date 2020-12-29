@@ -78,7 +78,7 @@ def update_graph(ranking):
                 mode='markers',
                 text=[row['Player']],
                 name=row['Player'],
-                marker_size=30,
+                marker_size=20,
                 hovertemplate=hover,
                 customdata=[[row['Team']]],
                 marker={'color': row['rank'],
@@ -105,7 +105,7 @@ def update_graph(ranking):
                 mode='markers',
                 text=df_out['Player'],
                 hovertemplate=hover,
-                marker_size=20,
+                marker_size=10,
                 customdata=[[row['Team']]],
                 opacity=0.3,
                 name='Outros',
@@ -121,11 +121,11 @@ def update_graph(ranking):
     
     fig.add_shape(type='line',
             x0=0, y0=df_in["Accurate passes, %"].mean(), x1=x_max, y1=df_in["Accurate passes, %"].mean(),     
-            line=dict(color="gray",width=2))
+            line=dict(color="gray",width=1.5, dash='dot'))
     
     fig.add_shape(type='line',
             x0=df_in["Passes per 90"].mean(), y0=0, x1=df_in["Passes per 90"].mean(), y1=y_max,     
-            line=dict(color="gray",width=2))
+            line=dict(color="gray",width=1.5, dash='dot'))
 
     return fig
     
