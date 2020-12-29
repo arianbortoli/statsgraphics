@@ -46,12 +46,35 @@ y_min=df[y_text].min()-5
 y_max=df[y_text].max()+5
 
 
+jumbotron = dbc.Jumbotron(
+    [
+        dbc.Container(
+            [
+                html.H1("Em busca de um craque", className="display-3"),
+                html.P(
+                    "Unimos o nosso gosto por futebol e dados. "
+                    "Fizemos essa análise para ver quem poderia ser nosso próximo craque!",
+                    className="lead",
+                )
+            ],
+            fluid=True,
+        )
+    ],
+    fluid=True,
+)
 
-app.layout = html.Div([
-    html.H1("Análises"),
+
+app.layout = dbc.Container([
+    jumbotron,
     
-    html.Div(["Selecionar ranking: ",
-              dcc.Input(id='my-input', value=10, type='number', min=1, max=len(df))]),
+    html.Br(),
+    dbc.InputGroup(
+            [
+                dbc.InputGroupAddon("Selecionar ranking", addon_type="prepend"),
+                dbc.Input(id='my-input', value=10, type='number', min=1, max=len(df)),
+            ],
+            className="mb-3",
+        ),
     html.Br(),
     dcc.Graph(id="scatter-plot",
               )
@@ -109,7 +132,7 @@ def update_graph(ranking):
                 marker_size=10,
                 customdata=[[row['Team']]],
                 opacity=0.3,
-                name=row['Player'],
+                name=row['Player'], 
                 marker={'sizemode':'area',
                         'sizeref':.305,
                         'color': 'gray'}))
