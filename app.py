@@ -80,7 +80,7 @@ def update_graph(ranking):
                 name=row['Player'],
                 marker_size=30,
                 hovertemplate=hover,
-                customdata=[[row['Team'], 'size']],
+                customdata=[[row['Team']]],
                 marker={'color': row['rank'],
                         'sizeref':.305,}))
     
@@ -106,7 +106,7 @@ def update_graph(ranking):
                 text=df_out['Player'],
                 hovertemplate=hover,
                 marker_size=20,
-                customdata=['Team', 'size'],
+                customdata=[[row['Team']]],
                 opacity=0.3,
                 name='Outros',
                 marker={'sizemode':'area',
