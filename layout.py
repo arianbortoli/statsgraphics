@@ -9,25 +9,31 @@ jumbotron = dbc.Jumbotron(
     [
         dbc.Container(
             [
-                html.H1("Em busca de um craque", className="display-4"),
+                html.H1("Em busca de um craque", className="display-3"),
                 html.P(
-                    "Unimos o nosso gosto por futebol e dados. "
-                    "Fizemos essa análise para ver quem poderia ser nosso próximo craque!",
+                    "Unimos a nossa paixão por futebol e análise de dados para fazer essa pesquisa. ",
                     className="lead",
-                )
+                ),
+                html.Hr(className="my-2"),
+                html.P(
+                    "Nosso objetivo é encontrar quem poderia ser nosso próximo craque!",
+                ),
             ],
-            fluid=True,
         )
     ],
-    fluid=True,
 )
 
 
 def getLayout(app, max_size):
     app.layout = dbc.Container([
-        jumbotron,
+        (jumbotron),
 
-        html.Br(),
+
+
+        # html.Div([html.P('Primeiro pegamos os dados em: '), html.A("#")]),
+
+
+
 
         html.Div(
             [
@@ -53,7 +59,8 @@ def getLayout(app, max_size):
                     ],
                     className="mb-3",
                 )
-            ]),
+            ]
+        ),
 
 
         html.Br(),
@@ -72,6 +79,6 @@ def getLayout(app, max_size):
                         'padding': '10px 10px 10px 20px'
                         },)
 
-    ])
+    ], fluid=True)
 
     return app
