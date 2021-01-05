@@ -55,7 +55,7 @@ def getLayout(app, max_size):
 
 
                         dbc.InputGroupAddon(
-                            "Mostrar jogadores fora do ranking", addon_type="prepend"),
+                            "Mostrar jogadores fora do ranking", addon_type="append"),
                     ],
                     className="mb-3",
                 )
