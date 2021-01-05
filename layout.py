@@ -30,7 +30,7 @@ def getLayout(app, max_size):
 
 
 
-        html.Div([html.P('Primeiro pegamos os dados em: '), html.A("#")]),
+        # html.Div([html.P('Primeiro pegamos os dados em: '), html.A("#")]),
 
 
 
@@ -77,8 +77,13 @@ def getLayout(app, max_size):
                         'height': '750px',
                         'overflow-y': 'scroll',
                         'padding': '10px 10px 10px 20px'
-                        },)
+                        },),
 
+        html.Div(
+            dbc.Row(
+                [html.P("Git repo:"), html.A('click here',
+                                             href='https://github.com/arianbortoli/statsgraphics', target='_blank')])
+        ),
     ], fluid=True)
 
     return app
