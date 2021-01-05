@@ -62,4 +62,4 @@ for index in range(6):
 getTableCallBack(app, df_list[0], 'Table')
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

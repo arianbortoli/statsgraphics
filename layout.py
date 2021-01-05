@@ -30,7 +30,7 @@ def getLayout(app, max_size):
 
 
 
-        # html.Div([html.P('Primeiro pegamos os dados em: '), html.A("#")]),
+        html.Div([html.P('Primeiro pegamos os dados em: '), html.A("#")]),
 
 
 
