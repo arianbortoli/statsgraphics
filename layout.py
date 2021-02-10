@@ -28,42 +28,38 @@ def getLayout(app, max_size):
     app.layout = dbc.Container([
         (jumbotron),
 
-
-
-        # html.Div([html.P('Primeiro pegamos os dados em: '), html.A("#")]),
-
-
-
-
         html.Div(
-            [
-                dbc.InputGroup(
-                    [
-                        dbc.InputGroupAddon(
-                            "Selecionar ranking", addon_type="prepend"),
-                        dbc.Input(id='my-input', value=10,
-                                  type='number', min=1, max=max_size),
+            [html.P('Selecione quantos jogadores quer analisar e se quer mostrar jogadores fora do ranking: ')]),
 
-                    ],
-                    className="mb-3",
-                ),
-
-                dbc.InputGroup(
-                    [
-                        dbc.InputGroupAddon(
-                            dbc.Checkbox(id="checkbox", checked=True), addon_type="prepend"),
+        html.Div([
+            dbc.Row(
+                [
+                    dbc.Col(dbc.InputGroup([
+                            dbc.InputGroupAddon(
+                                "Selecionar ranking", addon_type="prepend"),
+                            dbc.Input(id='ranking-input', value=10,
+                                      type='number', min=1, max=max_size),
+                            ])),
+                    dbc.Col(dbc.InputGroup([
+                            dbc.InputGroupAddon(
+                                dbc.Checkbox(id="checkbox", checked=True), addon_type="prepend"),
 
 
-                        dbc.InputGroupAddon(
-                            "Mostrar jogadores fora do ranking", addon_type="append"),
-                    ],
-                    className="mb-3",
-                )
-            ]
-        ),
+                            dbc.InputGroupAddon(
+                                "Mostrar jogadores fora do ranking", addon_type="append"),
+
+                            ])),
+                    dbc.Col(dbc.Button("Atualizar",
+                                       id="button", className="mr-2")),
+                ]
+            ),
+
+        ]),
+
 
 
         html.Br(),
+
         dcc.Graph(id="scatter-plot-1"),
         dcc.Graph(id="scatter-plot-2"),
         dcc.Graph(id="scatter-plot-3"),
@@ -72,17 +68,33 @@ def getLayout(app, max_size):
         dcc.Graph(id="scatter-plot-6"),
 
         html.Br(),
-        html.Div(id='Table',
-                 style={'width': '100%',
-                        'height': '750px',
-                        'overflow-y': 'scroll',
-                        'padding': '10px 10px 10px 20px'
-                        },),
+
+        html.Div(
+            [html.H3('Tabela dos Craques')],
+            style={'textAlign': 'center'},
+        ),
+
+        dbc.Row(dbc.Col(
+            dbc.Spinner(children=[
+                html.Div(id='Table',
+                         style={'width': '100%',
+                                'height': '750px',
+                                'overflow-y': 'scroll',
+                                'padding': '10px 10px 10px 20px'
+                                },)
+            ],
+                size="lg", color="red", type="border", fullscreen=True,),
+
+            width={'size': 12, 'offset': 0}),
+        ),
+
+
+
 
         html.Div(
             dbc.Row(
-                [html.P("Git repo:"), html.A('click here',
-                                             href='https://github.com/arianbortoli/statsgraphics', target='_blank')])
+                [html.P("Para ver o Git desse projeto:"), html.A('clique aqui',
+                                                                 href='https://github.com/arianbortoli/statsgraphics', target='_blank')])
         ),
     ], fluid=True)
 
