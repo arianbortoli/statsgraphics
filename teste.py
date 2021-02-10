@@ -8,6 +8,7 @@ Created on Tue Dec 29 19:40:48 2020
 
 from data import *
 
+"""
 df = teste('PASSES')
 
 print(df['size'])
@@ -16,3 +17,6 @@ print(df['size'])
 df = getData('PASSES')
 
 print(df['size'])
+"""
+
+print(getFullDf())

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 
@@ -9,10 +9,11 @@ def getCallBacks(app, df, graph_id, x_text, y_text, hover, x_min, x_max, y_min, 
     @app.callback(
         Output(graph_id, 'figure'),
         [
-            Input('my-input', 'value'),
-            Input('checkbox', 'checked')
+            Input("button", "n_clicks"),
+            State('ranking-input', 'value'),
+            State('checkbox', 'checked')
         ],)
-    def update_graph(ranking, checkbox_checked):
+    def update_graph(click, ranking, checkbox_checked):
 
         top_rank = ranking
         df_in = df[df["rank"] <= top_rank]
@@ -72,17 +73,27 @@ def getTableCallBack(app, df, table_id):
 
     @ app.callback(
         Output(table_id, 'children'),
-        Input('my-input', 'value'))
-    def update_table(Ranking):
-        table = dbc.Table.from_dataframe(
-            df, striped=True, bordered=True, hover=True, responsive=True)
+        [Input("button", "n_clicks"),
+            State('ranking-input', 'value'),
+            State('checkbox', 'checked')])
+    def update_table(click, ranking, checkbox_checked):
+        top_rank = ranking
+        df_in = df[df["rank"] <= top_rank]
+
+        if checkbox_checked:
+            table = dbc.Table.from_dataframe(
+                df, striped=True, bordered=True, hover=True, responsive=True)
+        else:
+            table = dbc.Table.from_dataframe(
+                df_in, striped=True, bordered=True, hover=True, responsive=True)
 
         return table
-        """ 
-        return dbc.Table.from_dataframe(df,
-                                        bordered=True,
-                                        dark=True,
-                                        hover=True,
-                                        responsive=True,
-                                        striped=True,)
-        """
+
+
+""" 
+def getLoadingState(app, max_sheets):
+        @ app.callback(
+        Output(table_id, 'children'),
+        Input('my-input', 'value'))
+    def update_table(Ranking):
+"""

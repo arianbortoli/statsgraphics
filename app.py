@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import pandas as pd
 
 
-from data import getData, getSheets, getXAxisText, getYAxisText
+from data import getData, getSheets, getXAxisText, getYAxisText, getFullDf
 from layout import getLayout
 from callbacks import getCallBacks, getTableCallBack
 
@@ -29,8 +29,9 @@ y_max_list = list()
 
 app = getLayout(app, len(df))
 
+number_sheets = 6
 
-for index in range(6):
+for index in range(number_sheets):
     df = getData(sheets[index])
 
     x_text = getXAxisText(sheets[index])
@@ -39,7 +40,7 @@ for index in range(6):
     hover = (
         "%%{text} [%%{customdata[0]}] <br><br>%s = %%{x}<br>%s = %%{y}<extra></extra>" % (x_text, y_text))
 
-    x_min = df[x_text].min()-5
+    x_min = 0
     x_max = df[x_text].max()+5
 
     y_min = df[y_text].min()-5
@@ -59,7 +60,7 @@ for index in range(6):
                  y_text, hover, x_min, x_max, y_min, y_max, sheets[index])
 
 
-getTableCallBack(app, df_list[0], 'Table')
+getTableCallBack(app, getFullDf(), 'Table')
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)

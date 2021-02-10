@@ -1,6 +1,6 @@
 # Dash App
 
-Página criada com o Dash Plotly, para fazer uma análise jogadores.
+Página criada com o Dash Plotly, para fazer uma análise de jogadores.
 
 Estamos em busca de um craque, por isso pesquisamos diversos indicadores de cada um para chegar no resultado.
 
